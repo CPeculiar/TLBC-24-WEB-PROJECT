@@ -1,0 +1,215 @@
+.redirect-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .processing-icon {
+    width: 50px;
+    height: 50px;
+    border: 5px solid powderblue;
+    border-top: 5px solid #f0f0f0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .redirect-text {
+    /* color: #ffd700; */
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .redirect-text span{
+    font-size: 22px;
+    font-weight: 900;
+  }
+  
+  .redirect-link {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .redirect-link:hover {
+    color: blue;
+  }
+
+
+
+  /*
+    Terms Accepted component
+  */
+  .custom-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 1px solid black;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+  }
+  
+  .custom-checkbox:checked {
+    background-color: transparent;
+  }
+  
+  .custom-checkbox:checked::before {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.7rem;
+    color: black;
+  }
+
+
+    /*
+    Custom button
+  */
+
+  .custom-btn-green {
+    background-color: green;
+    border-color: green;
+    width: 300px; /* Adjust the width as needed */
+    color: white; /* Ensure the text color is readable */
+    
+  }
+  
+  .custom-btn-green:hover {
+    background-color: darkgreen; /* Optional: change the hover color */
+    border-color: darkgreen;
+    color: white;
+  }
+p {
+    font-size: 1.3em;
+}
+
+  
+
+
+/* ChatbotIcon.css
+ */
+.chatbot-container {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 50;
+  border-color: transparent;
+}
+
+.chatbot-button {
+  background-color: #fbbf24; /* yellow-500 */
+  color: white;
+  border-radius: 9999px; /* rounded-full */
+  border-color: #fbbf24;
+  width: 48px; /* w-12 */
+  height: 48px; /* h-12 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  transition: background-color 0.2s; /* transition-colors */
+}
+
+.chatbot-button:hover {
+  background-color: #f59e0b; /* yellow-600 */
+}
+
+.chatbot-modal {
+  background-color: white;
+  border-radius: 8px; /* rounded-lg */
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1); /* shadow-xl */
+  padding: 16px; /* p-4 */
+  width: 336px; /* w-72 */
+  position: relative;
+}
+
+.chatbot-close-button {
+  position: absolute;
+  top: 12px; /* top-2 */
+  right: 10px; /* left-[249px] */
+  background: transparent;
+  font-weight: 600; /* font-semibold */
+  color: #6b7280; /* text-gray-500 */
+}
+
+.chatbot-close-button:hover {
+  color: #374151; /* text-gray-700 */
+}
+
+.chatbot-heading {
+  font-size: 1.5rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 12px; /* mb-3 */
+  text-align: center;
+}
+
+.chatbot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* space-y-3 */
+}
+
+.chatbot-input {
+  width: 120%; /* w-full */
+  padding: 10px 12px; /* px-3 py-2 */
+  font-size: 0.975rem; /* text-sm */
+  border: 1px solid black; /* border */
+  border-radius: 4px; /* rounded-md */
+  
+}
+
+.chatbot-note {
+  font-size: .85rem; /* text-xs */
+  color: black; /* text-gray-600 */
+  text-align: center;
+}
+
+.chatbot-submit-button {
+  width: 100%; /* w-full */
+  background-color: #fbbf24; /* bg-yellow-500 */
+  color: white;
+  padding: 8px 0; /* py-2 */
+  border-radius: 8px; /* rounded-md */
+  font-size: 0.985rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  transition: background-color 0.2s; /* transition-colors */
+  border-color: transparent;
+}
+
+.chatbot-submit-button:hover {
+  background-color: #f59e0b; /* bg-yellow-600 */
+}
+
+
+/*
+    Admin Confirm
+  */
+
+.confirm-container {
+  display: flex;
+  gap: 2px; 
+  padding: 25px; 
+}
+
+@media (max-width: 768px) {
+  .confirm-container {
+      flex-direction: column; 
+  }
+}
