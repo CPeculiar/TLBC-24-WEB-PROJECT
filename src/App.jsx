@@ -93,7 +93,7 @@ function App() {
 
             <div className="col-lg-6 col-12">
               <div className="about-text-wrap">
-                <img src="public/images/_MG_8912.jpg" className="about-image img-fluid" />
+                <img src="/images/_MG_8912.jpg" className="about-image img-fluid" />
 
                 <div className="about-text-info d-flex">
                   <div className="d-flex">
@@ -125,7 +125,7 @@ function App() {
             <div className="col-lg-5 col-12">
               <div className="artists-thumb">
                 <div className="artists-image-wrap">
-                  <img src="public/images/_MG_7548.jpg"
+                  <img src="/images/_MG_7548.jpg"
                     className="artists-image img-fluid" />
                 </div>
 
@@ -137,7 +137,7 @@ function App() {
               </div>
               <div className="artists-thumb">
                 <div className="artists-image-wrap">
-                  <img src="public/images/_MG_8003.jpg"
+                  <img src="/images/_MG_8003.jpg"
                     className="artists-image img-fluid" />
                 </div>
 
@@ -152,7 +152,7 @@ function App() {
             <div className="col-lg-5 col-12">
               <div className="artists-thumb">
                 <div className="artists-image-wrap">
-                  <img src="public/images/_MG_8410.jpg"
+                  <img src="/images/_MG_8410.jpg"
                     className="artists-image img-fluid" />
                 </div>
 
@@ -164,7 +164,7 @@ function App() {
               </div>
 
               <div className="artists-thumb">
-                <img src="public/images/_MG_1546.jpg"
+                <img src="/images/_MG_1546.jpg"
                   className="artists-image img-fluid" />
 
                 <div className="artists-hover">
