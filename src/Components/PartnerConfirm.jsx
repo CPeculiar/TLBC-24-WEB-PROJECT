@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import QrScanner from "react-qr-scanner";
 import axios from "axios";
+import '../Styles/MoreStyling.css'
 
 const PartnerConfirm = () => {
   const [isScanning, setIsScanning] = useState(false);

@@ -510,7 +510,7 @@ strong {
   overflow: hidden;
   padding-top: 100px;
   height: calc(100vh - 51px);
-  background-image: url(public/images/TLBC24Animation.mp4);
+  background-image: url(/images/TLBC24Animation.mp4);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -543,7 +543,7 @@ strong {
   ABOUT              
 -----------------------------------------*/
 .about-section {
-  background-image: url('../images/edward-unsplash-blur.jpg');
+  /* background-image: url('../images/edward-unsplash-blur.jpg'); */
   background-color: #704010;
   background-repeat: no-repeat;
   background-size: cover;
@@ -588,7 +588,7 @@ strong {
   TICKET               
 -----------------------------------------*/
 .ticket-section {
-  background-image: url('../images/nicholas-green-unsplash-blur.jpg');
+  /* background-image: url('../images/nicholas-green-unsplash-blur.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -681,7 +681,7 @@ strong {
   SCHEDULE              
 -----------------------------------------*/
 .schedule-section {
-  background-image: url('../images/nainoa-shizuru-unsplash-blur.jpg');
+  /* background-image: url('../images/nainoa-shizuru-unsplash-blur.jpg'); */
   background-color: #242424;
   background-repeat: no-repeat;
   background-position: center;
@@ -730,7 +730,7 @@ strong {
   border-right-color: transparent;
 }
 
-.schedule-table .pop-background-image {
+/* .schedule-table .pop-background-image {
   background-image: url('../images/artists/joecalih-UmTZqmMvQcw-unsplash.jpg');
 }
 
@@ -740,7 +740,7 @@ strong {
 
 .schedule-table .country-background-image {
   background-image: url('../images/artists/soundtrap-rAT6FJ6wltE-unsplash.jpg');
-}
+} */
 
 .table-background-image-wrap {
   background-repeat: no-repeat;
@@ -1057,4 +1057,3 @@ strong {
     font-size: 20px;
   }
 }
-

@@ -663,7 +663,7 @@ https://templatemo.com/tm-583-festava-live
     ABOUT              
   -----------------------------------------*/
   .about-section {
-    background-image: url('../images/edward-unsplash-blur.jpg');
+    /* background-image: url('../images/edward-unsplash-blur.jpg'); */
     background-color: #704010;
     background-repeat: no-repeat;
     background-size: cover;
@@ -708,7 +708,7 @@ https://templatemo.com/tm-583-festava-live
     TICKET               
   -----------------------------------------*/
   .ticket-section {
-    background-image: url('../images/nicholas-green-unsplash-blur.jpg');
+    /* background-image: url('../images/nicholas-green-unsplash-blur.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -801,7 +801,7 @@ https://templatemo.com/tm-583-festava-live
     SCHEDULE              
   -----------------------------------------*/
   .schedule-section {
-    background-image: url('../images/nainoa-shizuru-unsplash-blur.jpg');
+    /* background-image: url('../images/nainoa-shizuru-unsplash-blur.jpg'); */
     background-color: #242424;
     background-repeat: no-repeat;
     background-position: center;
@@ -850,7 +850,7 @@ https://templatemo.com/tm-583-festava-live
     border-right-color: transparent;
   }
   
-  .schedule-table .pop-background-image {
+  /* .schedule-table .pop-background-image {
     background-image: url('../images/artists/joecalih-UmTZqmMvQcw-unsplash.jpg');
   }
   
@@ -860,7 +860,7 @@ https://templatemo.com/tm-583-festava-live
   
   .schedule-table .country-background-image {
     background-image: url('../images/artists/soundtrap-rAT6FJ6wltE-unsplash.jpg');
-  }
+  } */
   
   .table-background-image-wrap {
     background-repeat: no-repeat;

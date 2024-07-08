@@ -1,16 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import Gallery from './Pages/Gallery.jsx'
-import Partners from './Pages/Partners.jsx'
-import Register from './Pages/Register.jsx'
-import PaymentStatus from './Pages/PaymentStatus.jsx'
-import Redirect from './Pages/Redirect.jsx'
-import AdminConfirm from './Pages/AdminConfirm.jsx'
-import PaymentSuccess from './Pages/PaymentSuccess.jsx'
-import Test from './Pages/Test.jsx'
+import Gallery from './Pages/Home/Gallery.jsx'
+import Partners from './Pages/Home/Partners.jsx'
+import Register from './Pages/Home/Register.jsx'
+import PaymentStatus from './Pages/Payments/PaymentStatus.jsx'
+import Redirect from './Pages/Payments/Redirect.jsx'
+import PaymentSuccess from './Pages/Payments/PaymentSuccess.jsx'
 import Layout4Chatbot from './Components/Layout4Chatbot.jsx'
-import RetryPayment from './Pages/RetryPayment.jsx'
+import RetryPayment from './Pages/Payments/RetryPayment.jsx'
+import AdminRoles from './Pages/Admin/AdminRoles.jsx'
+import AdminConfirm from './Pages/Admin/AdminConfirm.jsx'
+import AdminGetList from './Pages/Admin/AdminGetList.jsx'
+import RegenerateLink from './Components/RegenerateLink.jsx'
+import NotFound from './Pages/NotFound.jsx'
 import './index.css'
 
 import {
@@ -47,10 +50,6 @@ const router = createBrowserRouter([
         element: <Redirect />,
       },
       {
-        path: "/Admin",
-        element: <AdminConfirm />,
-      },
-      {
         path: "/PaySuccess",
         element: <PaymentSuccess />,
       },
@@ -59,9 +58,27 @@ const router = createBrowserRouter([
         element: <RetryPayment />,
       },
       {
-        path: "/Test",
-        element: <Test />,
+        path: "/Admin",
+        element: <AdminRoles />,
       },
+      {
+        path: "/Adminconfirm",
+        element: <AdminConfirm />,
+      },
+      {
+        path: "/Admingetlist",
+        element: <AdminGetList />,
+      },
+      {
+        path: "/Regeneratelink",
+        element: <RegenerateLink />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+
+
     ],
   },
 ]);
