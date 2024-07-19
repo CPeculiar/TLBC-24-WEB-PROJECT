@@ -11,7 +11,7 @@ function Navbar() {
                     TLBC'24
                 </Link>
     
-                <Link to={`/Register`} className="btn custom-btn d-lg-none ms-auto me-4">Register</Link>
+                <Link to={`/Register`} className="btn btn-danger d-lg-none ms-auto me-4">Register</Link>
     
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
