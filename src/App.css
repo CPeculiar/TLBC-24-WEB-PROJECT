@@ -478,9 +478,13 @@ strong {
 -----------------------------------------*/
 #homee{
   padding-top: 290px;
+  position: relative;
+  z-index: 2;
 }
 #homeee{
   padding-top: 0px;
+  position: relative;
+  z-index: 2;
 }
 @media screen and (max-width: 991px) {
   #homee{
@@ -516,6 +520,58 @@ strong {
   background-size: cover;
 }
 
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    padding-top: 80px; /* Adjust based on your navbar height */
+    padding-bottom: 30px;
+  }
+}
+
 
 .hero-section small {
   color: var(--white-color);
@@ -543,7 +599,7 @@ strong {
   ABOUT              
 -----------------------------------------*/
 .about-section {
-  /* background-image: url('../images/edward-unsplash-blur.jpg'); */
+  background-image: url('/images/edward-unsplash-blur.jpg');
   background-color: #704010;
   background-repeat: no-repeat;
   background-size: cover;
@@ -588,7 +644,6 @@ strong {
   TICKET               
 -----------------------------------------*/
 .ticket-section {
-  /* background-image: url('../images/nicholas-green-unsplash-blur.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -681,7 +736,6 @@ strong {
   SCHEDULE              
 -----------------------------------------*/
 .schedule-section {
-  /* background-image: url('../images/nainoa-shizuru-unsplash-blur.jpg'); */
   background-color: #242424;
   background-repeat: no-repeat;
   background-position: center;
@@ -729,19 +783,6 @@ strong {
 .schedule-table thead th:last-child {
   border-right-color: transparent;
 }
-
-/* .schedule-table .pop-background-image {
-  background-image: url('../images/artists/joecalih-UmTZqmMvQcw-unsplash.jpg');
-}
-
-.schedule-table .rock-background-image {
-  background-image: url('../images/artists/abstral-official-bdlMO9z5yco-unsplash.jpg');
-}
-
-.schedule-table .country-background-image {
-  background-image: url('../images/artists/soundtrap-rAT6FJ6wltE-unsplash.jpg');
-} */
-
 .table-background-image-wrap {
   background-repeat: no-repeat;
   background-position: center;
@@ -906,15 +947,14 @@ strong {
   SOCIAL ICON               
 -----------------------------------------*/
 .social-icon {
-  margin: 0;
+  display: flex;
+  justify-content: center;
   padding: 0;
 }
 
 .social-icon-item {
   list-style: none;
-  display: inline-block;
-  vertical-align: top;
-  z-index: 100;
+  margin: 0 10px;
 }
 
 .social-icon-link {

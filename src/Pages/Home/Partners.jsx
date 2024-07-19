@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 import Select from "react-select";
 import { Country, State } from "country-state-city";
 import Navbar from "../../Components/Navbar";
@@ -136,6 +137,9 @@ const Partners = () => {
                 the form below to submit your details and our team will get to
                 you shortly. Thank you, God has blessed you!
               </p>
+              <p className="text-white"> If you have previously filled out and submitted this form but were unable to complete the payment process,<br /> 
+                     please click <Link to={`/Regeneratelink`} style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link>                     
+                      </p> 
             </div>
           </div>
         </div>

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { useLocation, useNavigate } from "react-router-dom";
 import successIcon from '../../assets/imagess/success3.svg';
 import cancelledIcon from '../../assets/imagess/cancel.png';
 import logo from '../../assets/imagess/TLBC24Logo2.png';
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
 
 
 const PaymentStatus = () => {
@@ -37,7 +40,15 @@ const PaymentStatus = () => {
   const isSuccessful = status && ["successful", "completed", "success"].includes(status.toLowerCase());
   console.log('isSuccessful:', isSuccessful);
 
+  const handleRegenerateLinkClick = (event, url) => {
+    event.preventDefault();
+    window.scrollTo(0, 0);
+    window.location.href = url;
+};
+
   return (
+    <>
+    <Navbar />
     <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center bg-light">
     
       <div className="bg-white p-5 rounded shadow-lg text-center">
@@ -70,7 +81,7 @@ const PaymentStatus = () => {
               onClick={handleClose}
               className="mt-4 btn btn-success"
             >
-              Close
+              View Receipt
             </button>
           </>
         ) : (
@@ -88,14 +99,16 @@ const PaymentStatus = () => {
             </h2>
             <p>
               Please try again or contact <br />
-              us on +2349134445037, <br /> if you are experiencing any problem.
+              us on +2349134445037, <br /> if you are experiencing any problem. <br/>
             </p>
+            
             {status === "cancelled" && (
               <p className="mt-3 text-center">
               <strong className="fw-semibold">
-                  Your Transaction Reference:
+              Alternatively, you can click <Link to={`/Regeneratelink`} 
+              style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link> to try again.
                 </strong>{" "}
-                {txRef}
+              
               </p>
             )}
             <button
@@ -108,6 +121,8 @@ const PaymentStatus = () => {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

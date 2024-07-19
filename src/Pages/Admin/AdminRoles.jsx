@@ -6,10 +6,8 @@ import Footer from '../../Components/Footer';
 const AdminRoles = () => {
   const roles = [
     { name: "Payment confirmation (Scan)", path: "/Adminconfirm" },
-    { name: "Get list of successful Registrations", path: "/Admingetlist" },
-    { name: "Get List of All Payments", path: "/Admingetlist" },
-    { name: "Regenerate Payment Link", path: "/Regeneratelink" },
-    { name: "Admin", path: "/Admin" }
+    { name: "Get full list of Registrations and Partnerships", path: "/Admingetlist" },
+    { name: "Regenerate Payment Link", path: "/Regeneratelink" }
   ];
 
   return (
@@ -20,7 +18,7 @@ const AdminRoles = () => {
       <header className="text-center py-5">
         <h1 className="display-4 text-black fw-bold">Admin Roles</h1>
       </header>
-      <main className="flex-grow-1 d-flex align-items-center justify-content-center">
+      <main className=" d-flex align-items-center justify-content-center">
         <div className="d-grid gap-4 col-10 col-md-8 col-lg-6">
           {roles.map((role, index) => (
             <Link 

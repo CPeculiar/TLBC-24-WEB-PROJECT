@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Navbar from '../../Components/Navbar';
 import TermsCheckbox from '../../Components/TermsCheckbox';
@@ -227,6 +228,12 @@ const Register = () => {
     return re.test(String(phone));
   };
 
+  const handleRegenerateLinkClick = (event, url) => {
+    event.preventDefault();
+    window.scrollTo(0, 0);
+    window.location.href = url;
+};
+
 
 
   return (
@@ -238,13 +245,17 @@ const Register = () => {
             <div className="">
                 <div className="col-12 mt-4 mb-5 text-center">
                     <h2 className="text-white mb-1" id="annual">Register Now!!!</h2>
-                    {/* <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur saepe
-                        quam recusandae totam delectus neque quia quasi maiores, sed quibusdam suscipit qui aut magni
-                        obcaecati sint fuga minus a ea?</p> */}
+                     <p className="text-white">Kindly fill the registration form below if you have not done so already. <br/> 
+                     If you have previously filled out and submitted this form but were unable to complete the payment process,<br /> 
+                     please click <Link to={`/Regeneratelink`} style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link>                     
+                      </p> 
                 </div>
             </div>
         </div>
     </section>
+   
+  
+                                
 
     <section className="registration-container">
         <div className="register-form">

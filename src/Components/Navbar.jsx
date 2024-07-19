@@ -7,8 +7,8 @@ function Navbar() {
     <>
         <nav className="navbar navbar-expand-lg bg-dark">
             <div className="container">
-                <Link className="navbar-brand" to={`/`}>
-                    TLBC
+                <Link className="navbar-brand" style={{color: 'white', fontSize: '1.6em'}} to={`/`}>
+                    TLBC'24
                 </Link>
     
                 <Link to={`/Register`} className="btn custom-btn d-lg-none ms-auto me-4">Register</Link>

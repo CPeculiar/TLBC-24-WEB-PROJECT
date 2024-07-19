@@ -8,11 +8,10 @@ import PaymentStatus from './Pages/Payments/PaymentStatus.jsx'
 import Redirect from './Pages/Payments/Redirect.jsx'
 import PaymentSuccess from './Pages/Payments/PaymentSuccess.jsx'
 import Layout4Chatbot from './Components/Layout4Chatbot.jsx'
-import RetryPayment from './Pages/Payments/RetryPayment.jsx'
 import AdminRoles from './Pages/Admin/AdminRoles.jsx'
 import AdminConfirm from './Pages/Admin/AdminConfirm.jsx'
+import RegeneratePaymentLink from './Pages/Payments/RegeneratePaymentLink.jsx'
 import AdminGetList from './Pages/Admin/AdminGetList.jsx'
-import RegenerateLink from './Components/RegenerateLink.jsx'
 import NotFound from './Pages/NotFound.jsx'
 import './index.css'
 
@@ -54,10 +53,6 @@ const router = createBrowserRouter([
         element: <PaymentSuccess />,
       },
       {
-        path: "/RetryPayment",
-        element: <RetryPayment />,
-      },
-      {
         path: "/Admin",
         element: <AdminRoles />,
       },
@@ -71,13 +66,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/Regeneratelink",
-        element: <RegenerateLink />,
+        element: <RegeneratePaymentLink />,
       },
       {
         path: "*",
         element: <NotFound />,
       },
-
+      
 
     ],
   },

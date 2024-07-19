@@ -24,31 +24,31 @@ function Footer() {
                             <div className="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
                                 <ul className="social-icon d-flex justify-content-lg-end">
                                     <li className="social-icon-item">
-                                        <a href="https://x.com/ElochukwuTLBC" className="social-icon-link">
+                                        <a href="https://x.com/ElochukwuTLBC" className="social-icon-link" target='_blank'>
                                             <span className="bi-twitter"></span>
                                         </a>
                                     </li>
 
                                     <li className="social-icon-item">
-                                        <a href="https://t.me/TheLordsbrethrenchurchintl" className="social-icon-link">
+                                        <a href="https://t.me/TheLordsbrethrenchurchintl" className="social-icon-link" target='_blank'>
                                             <span className="bi-telegram"></span>
                                         </a>
                                     </li>
 
                                     <li className="social-icon-item">
-                                        <a href="https://www.instagram.com/elochukwutlbc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="social-icon-link">
+                                        <a href="https://www.instagram.com/elochukwutlbc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="social-icon-link" target='_blank'>
                                             <span className="bi-instagram"></span>
                                         </a>
                                     </li>
 
                                     <li className="social-icon-item">
-                                        <a href="https://www.youtube.com/@thelordsbrethrenchurchintl" className="social-icon-link">
+                                        <a href="https://www.youtube.com/@thelordsbrethrenchurchintl" className="social-icon-link" target='_blank'>
                                             <span className="bi-youtube"></span>
                                         </a>
                                     </li>
 
                                     <li className="social-icon-item">
-                                        <a href="https://web.facebook.com/thelordsbrethrenchurchintl" className="social-icon-link">
+                                        <a href="https://web.facebook.com/thelordsbrethrenchurchintl" className="social-icon-link" target='_blank'>
                                             <span className="bi-facebook"></span>
                                         </a>
                                     </li>
@@ -66,19 +66,19 @@ function Footer() {
 
                             <ul className="site-footer-links">
                                 <li className="site-footer-link-item">
-                                    <Link to={`/`} className="site-footer-link" onClick={(event) => handleFooterLinkClick(event, '/')}>Home</Link>
+                                    <Link to={`/`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/')}>Home</Link>
                                 </li>
 
                                 <li className="site-footer-link-item">
-                                    <Link to={`/Gallery`} className="site-footer-link" onClick={(event) => handleFooterLinkClick(event, '/Gallery')}>Gallery</Link>
+                                    <Link to={`/Gallery`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Gallery')}>Gallery</Link>
                                 </li>
 
                                 <li className="site-footer-link-item">
-                                    <Link to={`/Partners`} className="site-footer-link" onClick={(event) => handleFooterLinkClick(event, '/Partners')}>Partner with us</Link>
+                                    <Link to={`/Partners`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Partners')}>Partner with us</Link>
                                 </li>
 
                                 <li className="site-footer-link-item">
-                                    <Link to={`/Register`} className="site-footer-link" onClick={(event) => handleFooterLinkClick(event, '/Register')}>Register</Link>
+                                    <Link to={`/Register`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Register')}>Register</Link>
                                 </li>
                             </ul>
                         </div>
@@ -87,13 +87,13 @@ function Footer() {
                             <h5 className="site-footer-title mb-3">Have any question?</h5>
 
                             <p className="text-white d-flex mb-1">
-                                <a href="tel: 0913-444-5037" className="site-footer-link">
+                                <a href="tel: 0913-444-5037" className="site-footer-link" style={{textDecoration: 'none'}}>
                                     0913-444-5037
                                 </a>
                             </p>
 
                             <p className="text-white d-flex">
-                                <a href="mailto:info@thelordsbrethrenchurch.org" className="site-footer-link">
+                                <a href="mailto:info@thelordsbrethrenchurch.org" className="site-footer-link" style={{textDecoration: 'none'}}>
                                     info@thelordsbrethrenchurch.org
                                 </a>
                             </p>

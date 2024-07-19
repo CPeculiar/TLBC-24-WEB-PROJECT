@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Button, Form, Modal } from 'react-bootstrap';
+  import { Container, Button, Form, Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const ChatbotButton = styled(Button)`
@@ -15,6 +15,11 @@ const ChatbotButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s ease;\
+
+  &:hover {
+    background-color: #FFFF8F; // Dark yellow color
+  }
   
   svg {
     width: 30px;
@@ -28,6 +33,19 @@ const StyledModal = styled(Modal)`
     border-radius: 15px;
   }
 `;
+
+const SubmitButton = styled(Button)`
+  background-color: #FFD700;
+  border: none;
+  color: black;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #E6C200; 
+    color: black;
+  }
+`;
+
 
 const ChatbotIcon = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,10 +111,10 @@ const ChatbotIcon = () => {
                 required
               />
             </Form.Group>
-            <p className="text-muted small">You will be redirected to WhatsApp to chat with our admin.</p>
-            <Button variant="primary" type="submit" className="w-100">
+            <p className="text-muted" style={{fontSize: '1.16em'}}>You will be redirected to WhatsApp to chat with our admin.</p>
+            <SubmitButton type="submit" className="w-100">
               Start Conversation
-            </Button>
+            </SubmitButton>
           </Form>
         </Modal.Body>
       </StyledModal>

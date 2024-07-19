@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode.react";
 import { jsPDF } from "jspdf";
 import qrcode from "qrcode";
+import Navbar from "../../Components/Navbar";
+import Footer from "../../Components/Footer";
 
 const PaymentSuccessCard = () => {
   const [paymentData, setPaymentData] = useState(null);
@@ -57,7 +59,19 @@ const PaymentSuccessCard = () => {
         const data = await response.json();
 
         if (data.status === "success") {
-          setPaymentData(data.details);
+          let fullName;
+          if (data.details.name) {
+            fullName = data.details.name;
+          } else if (data.details.firstname && data.details.lastname) {
+            fullName = `${data.details.firstname} ${data.details.lastname}`;
+          } else {
+            fullName = "N/A";
+          }
+
+          setPaymentData({
+            ...data.details,
+            name: fullName
+        });
           setGroup(data.group);
         } else {
           throw new Error(data.message || "Payment verification failed");
@@ -118,7 +132,7 @@ const PaymentSuccessCard = () => {
     }
 
     // Save the PDF
-    doc.save(`payment_receipt_${paymentData.reference}.pdf`);
+    doc.save(`payment_receipt_${paymentData.name}.pdf`);
   };
   // Generate QR code
   const qrCodeData = JSON.stringify({
@@ -131,54 +145,53 @@ const PaymentSuccessCard = () => {
   });
 
   return (
-    <div className="container">
+    <>
+    <Navbar />
+    <div className="container py-3">
     <div className="card mx-auto" style={{ maxWidth: '42rem' }}>
-      <div className="card-body">
+      <div className="card-body p-3">
         <h6 className="text-uppercase font-weight-bold mb-2" 
-      style={{ color: 'green', textAlign: 'center', fontSize: '30px' }}>
+      style={{ color: 'green', textAlign: 'center', fontSize: '24px' }}>
           Payment Successful
         </h6>
         <h2 className="card-title mb-3"
-        style={{ textAlign: 'center', fontSize: '40px' }}
+        style={{ textAlign: 'center', fontSize: '32px' }}
         >
           Thank you for your payment
         </h2>
-          <div className="mb-1" style={{ fontSize: '40px' }} >
-            <p style={{ fontSize: '22px' }}><strong>Name:</strong> {paymentData.name}</p>
-            <p style={{ fontSize: '22px' }}><strong>Phone:</strong> {paymentData.phone}</p>
-            <p style={{ fontSize: '22px' }}><strong>Email:</strong> {paymentData.email}</p>
-            <p style={{ fontSize: '22px' }}><strong>Reference:</strong> {paymentData.reference}</p>
-            <p style={{ fontSize: '22px' }}><strong>Amount Paid:</strong> ₦{paymentData.amount}</p>
-            <p style={{ fontSize: '22px' }}><strong>Category:</strong> {group}</p>
+          <div className="mb-3" style={{ fontSize: '18px' }} >
+            <p className="mb-1"><strong>Name:</strong> {paymentData.name}</p>
+            <p className="mb-1"><strong>Phone:</strong> {paymentData.phone}</p>
+            <p className="mb-1"><strong>Email:</strong> {paymentData.email}</p>
+            <p className="mb-1"><strong>Reference:</strong> {paymentData.reference}</p>
+            <p className="mb-1"><strong>Amount Paid:</strong> ₦{paymentData.amount}</p>
+            <p className="mb-1"><strong>Category:</strong> {group}</p>
+            {paymentData.country && <p className="mb-1"><strong>Country:</strong> {paymentData.country}</p>}
           </div>
-          <div className="d-flex justify-content-center mb-3">
+          <div className="d-flex justify-content-center mb-2">
             <QRCode
-            //   value={JSON.stringify({
-            //     firstname: paymentData.firstname,
-            //     lastname: paymentData.lastname,
-            //     phone: paymentData.phone,
-            //     email: paymentData.email,
-            //     reference: paymentData.reference,
-            //     amount: paymentData.amount,
-            //     category: paymentData.category,
-            //   })}
-              value={qrCodeData}
-              size={200}
+              value={qrCodeData} 
+              size={180}
               ref={qrCodeRef}
             />
           </div>
-          <p className="text-center text-muted small mb-4">
+          <p className="text-center text-muted small mb-3">
             Scan this QR code to verify your payment
           </p>
+          <div className="text-center">
           <button
             onClick={downloadReceipt}
-            className="btn btn-primary btn-block"
+            className="btn btn-success" 
+            style={{ minWidth: '200px' }}
           >
             Download Receipt with QR Code
           </button>
         </div>
       </div>
     </div>
+    </div>
+    <Footer />
+    </>
   );
 };
 
