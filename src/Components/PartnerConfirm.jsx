@@ -9,12 +9,16 @@ const PartnerConfirm = () => {
   const [error, setError] = useState(null);
   const [reference, setReference] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [facingMode, setFacingMode] = useState("environment"); // Default to back camera
 
-  const startScanning = () => {
+
+  const startScanning = (mode) => {
+    setFacingMode(mode);
     setIsScanning(true);
     setVerificationResult(null);
     setError(null);
   };
+
 
   const stopScanning = () => {
     setIsScanning(false);
@@ -140,10 +144,13 @@ const PartnerConfirm = () => {
           <h2 className="card-title mb-4" style={{ fontSize: '2.5em', textAlign: 'center'  }}>Partner's Verification</h2>
           {!isScanning && (
             <>
-            <div className="d-flex justify-content-center mt-3">
-              <button onClick={startScanning} className="btn btn-primary mb-3">
-                Scan QR Code
-              </button>
+              <div className="d-flex justify-content-center mt-3">
+                <button onClick={() => startScanning("environment")} className="btn btn-primary mb-3 me-2">
+                  Scan QR Code (Back Camera)
+                </button>
+                <button onClick={() => startScanning("user")} className="btn btn-secondary mb-3 ms-2">
+                  Scan QR Code (Front Camera)
+                </button>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
@@ -178,6 +185,7 @@ const PartnerConfirm = () => {
                 onError={handleError}
                 onScan={handleScan}
                 style={{ width: "100%" }}
+                facingMode={facingMode}
               />
               <div className="d-flex justify-content-center mt-3">
               <button onClick={stopScanning} className="btn btn-danger mt-3">
