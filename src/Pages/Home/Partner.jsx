@@ -6,7 +6,7 @@ import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 import '../../Styles/OtherStyles.css'
 
-const Partners = () => {
+const Partner = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [states, setStates] = useState([]);
@@ -280,7 +280,7 @@ const Partners = () => {
   );
 };
 
-export default Partners;
+export default Partner;
 
 
 

@@ -6,7 +6,7 @@ import Footer from '../../Components/Footer';
 const AdminRoles = () => {
   const roles = [
     { name: "Payment confirmation (Scan)", path: "/Adminconfirm" },
-    { name: "Get full list of Registrations and Partnerships", path: "/Admingetlist" },
+    { name: "Get full list of Registrations and Partnerships", path: "/Admingetlist" }, 
     { name: "Regenerate Payment Link", path: "/Regeneratelink" }
   ];
 

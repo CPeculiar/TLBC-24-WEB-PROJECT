@@ -7,7 +7,6 @@ import logo from '../../assets/imagess/TLBC24Logo2.png';
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
-
 const PaymentStatus = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -33,9 +32,10 @@ const PaymentStatus = () => {
     if (["successful", "completed", "success"].includes(status.toLowerCase())) {
       window.location.replace(`${baseUrl}${queryParams}`);
     } else {
-      navigate("/RetryPayment");
+      navigate("/Regeneratelink");
     }
   };
+
 
   const isSuccessful = status && ["successful", "completed", "success"].includes(status.toLowerCase());
   console.log('isSuccessful:', isSuccessful);

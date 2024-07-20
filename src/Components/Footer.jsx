@@ -74,12 +74,13 @@ function Footer() {
                                 </li>
 
                                 <li className="site-footer-link-item">
-                                    <Link to={`/Partners`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Partners')}>Partner with us</Link>
-                                </li>
-
-                                <li className="site-footer-link-item">
                                     <Link to={`/Register`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Register')}>Register</Link>
                                 </li>
+                                
+                                <li className="site-footer-link-item">
+                                    <Link to={`/Partner`} className="site-footer-link" style={{textDecoration: 'none'}} onClick={(event) => handleFooterLinkClick(event, '/Partner')}>Partner with us</Link>
+                                </li>
+
                             </ul>
                         </div>
 
@@ -118,4 +119,4 @@ function Footer() {
     )
 }
 
-export default Footer
+export default Footer;

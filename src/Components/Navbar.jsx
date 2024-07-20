@@ -33,10 +33,9 @@ function Navbar() {
                         </li>
     
                         <li className="nav-item">
-                            <Link className="nav-link click-scroll" to={`/Partners`}>Partner with us</Link>
+                            <Link className="nav-link click-scroll" to={`/Partner`}>Partner with us</Link>
                         </li>
                     </ul>
-                    {/* <Link to={`/Register`} className="btn custom-btn d-lg-block d-none">sign In</Link> */}
                 </div>
             </div>
         </nav>
