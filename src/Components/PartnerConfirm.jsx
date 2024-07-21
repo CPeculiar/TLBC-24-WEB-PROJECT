@@ -38,9 +38,7 @@ const PartnerConfirm = () => {
         await verifyParticipant(reference);
       } catch (error) {
         console.error("Error verifying participant:", error);
-        setError(
-          error.response?.data?.message || error.message || "An error occurred"
-        );
+        setError("Reference number not found. Please contact the Chairman of TLBC'24 for assistance.");
       }
     }
   };
@@ -80,9 +78,7 @@ const PartnerConfirm = () => {
       setVerificationResult({ ...response.data, reference });
     } catch (error) {
       console.error("Error verifying participant:", error);
-      setError(
-        error.response?.data?.message || error.message || "An error occurred"
-      );
+      setError("Reference number not found. Please contact the Chairman of TLBC'24 for assistance.");
     } finally {
       setIsLoading(false);
     }
@@ -97,9 +93,7 @@ const PartnerConfirm = () => {
         await verifyParticipant(reference);
     } catch (error) {
       console.error("Error:", error);
-      setError(
-        error.response?.data?.message || error.message || "An error occurred"
-      );
+      setError("Reference number not found. Please contact the Chairman of TLBC'24 for assistance.");
     } finally {
       setIsLoading(false);
     }
