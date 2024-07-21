@@ -40,11 +40,10 @@ const Register = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
-      ...(name === "category" && value === "Member" ? { church_name: "" } : {}),
+      ...(name === "category" ? { church_name: "" } : {}),
     }));
     if (name === "category") {
       setMemberStatus(value);
-    } else {
     }
   };
 
@@ -57,7 +56,7 @@ const Register = () => {
     setCampingStatus(value);
     setFormData(prevState => ({
       ...prevState,
-      attendance_mode: value === "No" ? "" : value
+      attendance_mode: value === "Daily" ? "" : value
     }));
   };
 
@@ -151,6 +150,11 @@ const Register = () => {
       isValid = false;
     }
 
+    if (campingStatus === "Daily" && !data.attendance_mode) {
+      newErrors.attendance_mode = "Please select how you will join the Convocation";
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -193,8 +197,17 @@ const Register = () => {
           },
         });
       } else {
+         // Handle validation errors
+      if (data.email || data.phone) {
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          email: data.email ? data.email[0] : "",
+          phone: data.phone ? data.phone[0] : ""
+        }));
+      } else {
         throw new Error("Invalid response data");
       }
+    }
     } catch (error) {
       console.error("Error details:", error);
       alert("An error occurred: " + error.message);
@@ -375,11 +388,13 @@ const Register = () => {
                     value={formData.church_name}
                     onChange={handleInputChange}
                      >
-                        <option value="" selected disabled>Select your zone</option>
+                        <option value="" selected disabled>Select your zone/church</option>
                         <option value="Awka zone">Awka zone</option>
                         <option value="Nnewi zone">Nnewi zone</option>
                         <option value="Owerri zone">Owerri zone</option>
                         <option value="Ekwulobia zone">Ekwulobia zone</option>
+                        <option value="Ekwulobia zone">TLBC Onitsha</option>
+                        <option value="Ekwulobia zone">TLBCM UNILAG</option>
                     </select>
                     <span className="error" id="churchZone-error">{errors.church_name}</span>
                 </div>
@@ -438,7 +453,7 @@ const Register = () => {
                     value={formData.attendance_mode}
                     onChange={handleInputChange}
                     >
-                        <option value="" selected disabled>Choose an option</option>
+                        <option value="" disabled>Choose an option</option>
                         <option value="Streamer">Live Streaming</option>
                         <option value="Daily">Daily Attendance</option>
                     </select>

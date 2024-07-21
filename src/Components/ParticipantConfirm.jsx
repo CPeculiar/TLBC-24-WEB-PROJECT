@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import QrScanner from "react-qr-scanner";
 import axios from "axios";
 import '../Styles/MoreStyling.css'
@@ -11,12 +11,18 @@ const ParticipantConfirm = () => {
   const [reference, setReference] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [facingMode, setFacingMode] = useState("environment"); // Default to back camera
+  const qrScannerRef = useRef(null);
 
   const startScanning = (mode) => {
     setFacingMode(mode);
     setIsScanning(true);
     setVerificationResult(null);
     setError(null);
+  
+    // Force re-render of QrScanner component
+    if (qrScannerRef.current) {
+      qrScannerRef.current.openImageDialog();
+    }
   };
 
   const stopScanning = () => {
@@ -200,11 +206,14 @@ const ParticipantConfirm = () => {
           {isScanning && (
             <div>
               <QrScanner
+              ref={qrScannerRef}
                 delay={300}
                 onError={handleError}
                 onScan={handleScan}
                 style={{ width: "100%" }}
-                facingMode={facingMode}
+                constraints={{
+                  video: { facingMode: facingMode }
+                }}
               />
               <div className="d-flex justify-content-center mt-3">
               <button onClick={stopScanning} className="btn btn-danger mt-3">

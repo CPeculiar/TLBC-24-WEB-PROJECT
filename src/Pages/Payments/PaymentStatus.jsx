@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useLocation, useNavigate } from "react-router-dom";
 import successIcon from '../../assets/imagess/success3.svg';
 import cancelledIcon from '../../assets/imagess/cancel.png';
-import logo from '../../assets/imagess/TLBC24Logo2.png';
+import logo from '../../assets/imagess/TLBC24LOGO.png';
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
 
@@ -32,7 +32,7 @@ const PaymentStatus = () => {
     if (["successful", "completed", "success"].includes(status.toLowerCase())) {
       window.location.replace(`${baseUrl}${queryParams}`);
     } else {
-      navigate("/Regeneratelink");
+      navigate("/home");
     }
   };
 
@@ -52,7 +52,7 @@ const PaymentStatus = () => {
     <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center bg-light">
     
       <div className="bg-white p-5 rounded shadow-lg text-center">
-        <img src={logo} alt="Logo" className="w-25 h-25 mx-auto mb-4" />
+        <img src={logo} alt="Logo" className="mx-auto mb-4" style={{width: '50%', height: '30%'}} />
         {isSuccessful ? (
           <>
             <div className="d-flex justify-content-center mb-4">
@@ -66,12 +66,7 @@ const PaymentStatus = () => {
               Payment Successful
             </h2>
             <div className="mt-4 text-start">
-              <p className="mb-3">
-                <strong className="fw-semibold">
-                 Your Transaction Reference:
-                </strong>{" "}
-                {txRef}
-              </p>
+           
               <p>
                 Thank you for registering for TLBC 2024.
               </p>
@@ -95,12 +90,19 @@ const PaymentStatus = () => {
               />
             </div>
             <h2 className="h2 fw-bold mb-2 text-danger">
-              Payment cancelled!
+              Payment unsuccessful!
             </h2>
             <p>
               Please try again or contact <br />
-              us on +2349134445037, <br /> if you are experiencing any problem. <br/>
+              us on +2349134445037.
             </p>
+            <p className="mt-3 text-center">
+              <strong className="fw-semibold">
+              You can click <Link to={`/Regeneratelink`} 
+              style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link> to try again.
+                </strong>{" "}
+              
+              </p>
             
             {status === "cancelled" && (
               <p className="mt-3 text-center">
