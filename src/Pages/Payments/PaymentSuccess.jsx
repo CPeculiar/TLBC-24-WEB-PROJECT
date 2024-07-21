@@ -4,7 +4,6 @@ import { jsPDF } from "jspdf";
 import qrcode from "qrcode";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import '../../Styles/MoreStyling.css'
 
 const PaymentSuccessCard = () => {
   const [paymentData, setPaymentData] = useState(null);
@@ -133,7 +132,7 @@ const PaymentSuccessCard = () => {
     doc.text("Payment Details:", 20, 95);
     doc.setFont(undefined, "normal");
 
-    doc.text(`Amount Paid: ${paymentData.amount}`, 30, 105);
+    doc.text(`Amount Paid: #${paymentData.amount}`, 30, 105);
     doc.text(`Group: ${group}`, 30, 115);
     doc.text(`Date: ${new Date().toLocaleString()}`, 30, 125);
 

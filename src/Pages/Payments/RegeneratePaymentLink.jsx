@@ -212,8 +212,8 @@ const PaymentPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
-      <style jsx>{`
+         <Footer /> 
+         <style jsx>{`
         :root {
           --gold: #FFD700;
           --black: #000000;
@@ -247,9 +247,9 @@ const PaymentPage = () => {
           background-color: var(--black);
           color: var(--gold);
         }
-      `}</style>
-    </>
-  );
-};
+      `}</style> 
+    </> 
+  ); 
+}; 
 
-export default PaymentPage;
+export default PaymentPage; 

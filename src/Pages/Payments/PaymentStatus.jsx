@@ -105,12 +105,7 @@ const PaymentStatus = () => {
               </p>
             
             {status === "cancelled" && (
-              <p className="mt-3 text-center">
-              <strong className="fw-semibold">
-              Alternatively, you can click <Link to={`/Regeneratelink`} 
-              style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link> to try again.
-                </strong>{" "}
-              
+              <p className="mt-3 text-center">              
               </p>
             )}
             <button

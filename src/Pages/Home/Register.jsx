@@ -393,8 +393,8 @@ const Register = () => {
                         <option value="Nnewi zone">Nnewi zone</option>
                         <option value="Owerri zone">Owerri zone</option>
                         <option value="Ekwulobia zone">Ekwulobia zone</option>
-                        <option value="Ekwulobia zone">TLBC Onitsha</option>
-                        <option value="Ekwulobia zone">TLBCM UNILAG</option>
+                        <option value="TLBC Onitsha">TLBC Onitsha</option>
+                        <option value="TLBCM UNILAG">TLBCM UNILAG</option>
                     </select>
                     <span className="error" id="churchZone-error">{errors.church_name}</span>
                 </div>
