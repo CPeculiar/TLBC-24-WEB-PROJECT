@@ -115,124 +115,139 @@ const PaymentPage = () => {
   return (
     <>
       <Navbar />
-      <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-        <h1 style={{ textAlign: "center" }}>
-          To Regenerate a Payment Link
-        </h1>
+      <div className="container py-5">
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <div className="card shadow-lg">
+              <div className="card-header bg-dark text-white">
+                <h1 className="text-center mb-0">Regenerate Payment Link</h1>
+              </div>
+              <div className="card-body">
+                <p className="lead text-muted">
+                  Input your unique Reference number to proceed directly to payment. If you can't recall it, enter your email address to retrieve it.
+                </p>
 
-        <p>
-          You will need to input your unique Reference number to be able to
-          proceed directly to the payment section. If you already have your
-          Reference number, please input it in the corresponding field below and
-          submit, but if you cannot recall your Reference number, please enter
-          the email address you used when filling the form earlier. This will
-          retrieve your Reference number and display it to you. Afterwards, you
-          should enter the Reference number in the appropriate field to proceed
-          to payment.
-        </p>
+                <div className="mb-4">
+                  <h5 className="text-center">Enter your Email address</h5>
+                  <div className="input-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your registered email"
+                    />
+                    <button
+                      className="btn btn-outline-dark"
+                      onClick={verifyEmail}
+                      disabled={isEmailLoading}
+                    >
+                      {isEmailLoading ? 
+                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> :
+                        "Submit"
+                      }
+                    </button>
+                  </div>
+                </div>
 
-        <div style={{ textAlign: "center", margin: "10px 0" }}>
-           Enter your Email address below
-        </div>
+                <div className="text-center mb-4">
+                  <span className="text-muted">OR</span>
+                </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your registered email"
-            style={{ flex: 1, marginRight: "10px", padding: "5px" }}
-          />
-          <button
-            onClick={verifyEmail}
-            disabled={isEmailLoading}
-            style={{ padding: "5px 10px" }}
-          >
-            {isEmailLoading ? "Loading..." : "Submit"}
-          </button>
-        </div>
+                <div className="mb-4">
+                  <h5 className="text-center">Enter your Reference Number</h5>
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={reference}
+                      onChange={(e) => setReference(e.target.value)}
+                      placeholder="Enter your reference number"
+                    />
+                    <button
+                      className="btn btn-dark"
+                      onClick={submitReference}
+                      disabled={isReferenceLoading}
+                    >
+                      {isReferenceLoading ? 
+                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> :
+                        "Submit"
+                      }
+                    </button>
+                  </div>
+                </div>
 
-        <div style={{ textAlign: "center", margin: "10px 0" }}>
-          OR <br /> Enter your Reference Number below
-        </div>
+                {error && <div className="alert alert-danger">{error}</div>}
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <input
-            type="text"
-            value={reference}
-            onChange={(e) => setReference(e.target.value)}
-            placeholder="Enter your reference number"
-            style={{ flex: 1, marginRight: "10px", padding: "5px" }}
-          />
-          <button
-            onClick={submitReference}
-            disabled={isReferenceLoading}
-            style={{ padding: "5px 10px" }}
-          >
-            {isReferenceLoading ? "Loading..." : "Submit"}
-          </button>
-        </div>
-
-        {error && <p style={{ color: "red" }}>{error}</p>}
-
-        {verificationResult && (
-          <div>
-            <h2>Search Result</h2>
-            <p>Please, find your Reference Number below</p>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead>
-                <tr>
-                  <th style={{ border: "1px solid black", padding: "5px" }}>
-                    Reference
-                  </th>
-                  <th style={{ border: "1px solid black", padding: "5px" }}>
-                    Email
-                  </th>
-                  <th style={{ border: "1px solid black", padding: "5px" }}>
-                    Phone
-                  </th>
-                  <th style={{ border: "1px solid black", padding: "5px" }}>
-                    Name
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {verificationResult.map((result, index) => (
-                  <tr key={index}>
-                    <td style={{ border: "1px solid black", padding: "5px" }}>
-                      {result.reference}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "5px" }}>
-                      {result.email}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "5px" }}>
-                      {result.phone}
-                    </td>
-                    <td style={{ border: "1px solid black", padding: "5px" }}>
-                      {result.name}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                {verificationResult && (
+                  <div className="mt-4">
+                    <h2 className="text-center mb-3">Search Result</h2>
+                    <p className="text-center">Please, find your Reference Number below</p>
+                    <div className="table-responsive">
+                      <table className="table table-bordered table-striped">
+                        <thead className="thead-dark">
+                          <tr>
+                            <th>Reference</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {verificationResult.map((result, index) => (
+                            <tr key={index}>
+                              <td>{result.reference}</td>
+                              <td>{result.email}</td>
+                              <td>{result.phone}</td>
+                              <td>{result.name}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        )}
+        </div>
       </div>
       <Footer />
+      <style jsx>{`
+        :root {
+          --gold: #FFD700;
+          --black: #000000;
+          --white: #FFFFFF;
+        }
+        .card {
+          border-color: var(--gold);
+        }
+        .card-header {
+          background-color: var(--black) !important;
+          color: var(--gold) !important;
+        }
+        .btn-dark {
+          background-color: var(--black);
+          border-color: var(--gold);
+          color: var(--gold);
+        }
+        .btn-dark:hover {
+          background-color: var(--gold);
+          color: var(--black);
+        }
+        .btn-outline-dark {
+          color: var(--black);
+          border-color: var(--black);
+        }
+        .btn-outline-dark:hover {
+          background-color: var(--black);
+          color: var(--gold);
+        }
+        .thead-dark {
+          background-color: var(--black);
+          color: var(--gold);
+        }
+      `}</style>
     </>
   );
 };
