@@ -206,7 +206,7 @@ const ParticipantConfirm = () => {
           {isScanning && (
             <div>
               <QrScanner
-              ref={qrScannerRef}
+                ref={qrScannerRef}
                 delay={300}
                 onError={handleError}
                 onScan={handleScan}

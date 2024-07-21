@@ -4,6 +4,7 @@ import { jsPDF } from "jspdf";
 import qrcode from "qrcode";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
+import '../../Styles/MoreStyling.css'
 
 const PaymentSuccessCard = () => {
   const [paymentData, setPaymentData] = useState(null);
@@ -98,31 +99,48 @@ const PaymentSuccessCard = () => {
   if (!paymentData) {
     return <div className="text-center">Loading payment information...</div>;
   }
+  
   const downloadReceipt = async () => {
     if (!paymentData) return;
 
     const doc = new jsPDF();
 
+    // Set background color
+  doc.setFillColor(255, 223, 186); // Light gold
+  doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+
     // Add receipt details
-    doc.setFontSize(20);
-    doc.text("Payment Receipt", 105, 15, { align: "center" });
+    doc.setFontSize(24);
+    doc.setTextColor(0, 0, 0); // Black
+    doc.setFont(undefined, 'bold');
+    doc.text("Payment Receipt for TLBC 2024", 105, 20, { align: "center" });
+
+    // Add a decorative line
+    doc.setDrawColor(212, 175, 55); // Gold
+    doc.setLineWidth(1);
+    doc.line(20, 25, 190, 25);
 
     doc.setFontSize(12);
     doc.setFont(undefined, "bold");
-    doc.text("Personal Information:", 20, 30);
+    doc.text("Personal Information:", 20, 40);
     doc.setFont(undefined, "normal");
-    doc.text(`Name: ${paymentData.name}`, 30, 40);
-    doc.text(`Phone Number: ${paymentData.phone}`, 30, 50);
-    doc.text(`Email: ${paymentData.email}`, 30, 60);
-    doc.text(`Reference: ${paymentData.reference}`, 30, 70);
+    doc.text(`Name: ${paymentData.name}`, 30, 50);
+    doc.text(`Phone Number: ${paymentData.phone}`, 30, 60);
+    doc.text(`Email: ${paymentData.email}`, 30, 70);
+    doc.text(`Reference: ${paymentData.reference}`, 30, 80);
 
     doc.setFont(undefined, "bold");
-    doc.text("Payment Details:", 20, 85);
+    doc.text("Payment Details:", 20, 95);
     doc.setFont(undefined, "normal");
 
-    doc.text(`Amount Paid: ${paymentData.amount}`, 30, 95);
-    doc.text(`Group: ${group}`, 30, 105);
-    doc.text(`Date: ${new Date().toLocaleString()}`, 30, 115);
+    doc.text(`Amount Paid: ${paymentData.amount}`, 30, 105);
+    doc.text(`Group: ${group}`, 30, 115);
+    doc.text(`Date: ${new Date().toLocaleString()}`, 30, 125);
+
+    // Add a decorative border
+  doc.setDrawColor(212, 175, 55); // Gold
+  doc.setLineWidth(2);
+  doc.rect(10, 10, 190, 277);
 
     try {
       const qrCodeDataUrl = await qrcode.toDataURL(qrCodeData);
@@ -132,7 +150,7 @@ const PaymentSuccessCard = () => {
     }
 
     // Save the PDF
-    doc.save(`payment_receipt_${paymentData.name}.pdf`);
+    doc.save(`Payment_receipt_for_${paymentData.name}.pdf`);
   };
   // Generate QR code
   const qrCodeData = JSON.stringify({
@@ -148,7 +166,7 @@ const PaymentSuccessCard = () => {
     <>
     <Navbar />
     <div className="container py-3">
-    <div className="card mx-auto" style={{ maxWidth: '42rem' }}>
+    <div className="card mx-auto" style={{ maxWidth: '35rem' }}>
       <div className="card-body p-3">
         <h6 className="text-uppercase font-weight-bold mb-2" 
       style={{ color: 'green', textAlign: 'center', fontSize: '24px' }}>
