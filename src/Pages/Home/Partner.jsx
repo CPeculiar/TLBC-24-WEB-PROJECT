@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Select from "react-select";
 import { Country, State } from "country-state-city";
 import Navbar from "../../Components/Navbar";
 import Footer from "../../Components/Footer";
-import '../../Styles/OtherStyles.css'
+import "../../Styles/OtherStyles.css";
 
 const Partner = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [states, setStates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,36 +23,72 @@ const Partner = () => {
     callback_url: `${window.location.origin}/PaymentStatus`,
   });
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+
+    // Phone validation (allowing for international numbers)
+    const phoneRegex = /^\+?[0-9\s\-()]+$/;
+    if (!formData.phone.trim() || !phoneRegex.test(formData.phone)) {
+      newErrors.phone = "Enter a valid phone number";
+    }
+
+    // Country validation
+    if (!formData.country) {
+      newErrors.country = "Country is required";
+    }
+
+    // State validation
+    if (!formData.state) {
+      newErrors.state = "State is required";
+    }
+
+    // Amount validation
+    if (!formData.amount || isNaN(formData.amount) || formData.amount <= 0) {
+      newErrors.amount = "Enter a valid amount";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    // Clear the error for this field as the user types
+    setErrors({ ...errors, [name]: "" });
   };
 
   const handleCountryChange = (country) => {
     setSelectedCountry(country);
     setStates(State.getStatesOfCountry(country.value));
     setSelectedState(null);
-    setFormData({ ...formData, country: country.label });
+    setFormData({ ...formData, country: country.label, state: "" });
+    setErrors({ ...errors, country: "", state: "" });
   };
 
   const handleStateChange = (state) => {
     setSelectedState(state);
     setFormData({ ...formData, state: state.label });
+    setErrors({ ...errors, state: "" });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     setIsLoading(true);
-
-    // const data = new FormData();
-    // for (const key in formData) {
-    //   data.append(key, formData[key]);
-    // }
-    // if (selectedCountry) {
-    //   data.append("country", selectedCountry.label);
-    // }
-    // if (selectedState) {
-    //   data.append("state", selectedState.label);
-    // }
 
     try {
       const response = await fetch(
@@ -66,14 +103,22 @@ const Partner = () => {
         }
       );
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error response:", errorData);
-        throw new Error("Something went wrong with your submission.");
-      }
+      const responseData= await response.json();
 
-      const responseData = await response.json();
-      console.log("Form Submission successful:", responseData);
+      if (!response.ok) {
+       // Parse error messages
+      let errorMessage = "";
+      for (const [field, messages] of Object.entries(responseData)) {
+        if (Array.isArray(messages)) {
+          errorMessage += ` ${messages.join(", ")}\n`;
+          // errorMessage += `${field}: ${messages.join(", ")}\n`;
+        }
+      }
+      throw new Error(errorMessage || "An error occurred");
+    }
+
+    console.log("Form Submission successful:", responseData);
+
 
       if (responseData.status === "success" && responseData.link) {
         // Redirect to the link obtained from the response
@@ -137,9 +182,22 @@ const Partner = () => {
                 the form below to submit your details and our team will get to
                 you shortly. Thank you, God has blessed you!
               </p>
-              <p className="text-white"> If you have previously filled out and submitted this form but were unable to complete the payment process,<br /> 
-                     please click <Link to={`/Regeneratelink`} style={{textDecoration: 'none'}} onClick={(event) => handleRegenerateLinkClick(event, '/Regeneratelink')}>here</Link>                     
-                      </p> 
+              <p className="text-white">
+                {" "}
+                If you have previously filled out and submitted this form but
+                were unable to complete the payment process,
+                <br />
+                please click{" "}
+                <Link
+                  to={`/Regeneratelink`}
+                  style={{ textDecoration: "none" }}
+                  onClick={(event) =>
+                    handleRegenerateLinkClick(event, "/Regeneratelink")
+                  }
+                >
+                  here
+                </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -147,18 +205,10 @@ const Partner = () => {
 
       <section className="registration-container">
         <div className="register-form">
-          <form 
-            id="registration-form" 
-            method="post" 
-            onSubmit={handleSubmit}
-            >
+          <form id="registration-form" method="post" onSubmit={handleSubmit}>
             <h2>Partnership Form</h2>
             <div className="form-group name">
-              <label 
-              htmlFor="name"
-              >
-              Name
-              </label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 id="name"
@@ -168,7 +218,7 @@ const Partner = () => {
                 value={formData.name}
                 onChange={handleInputChange}
               />
-              <span className="error" id="name-error"></span>
+             {errors.name && <span className="error">{errors.name}</span>}
             </div>
             <div className="form-group email">
               <label htmlFor="email">Email Address</label>
@@ -181,7 +231,7 @@ const Partner = () => {
                 value={formData.email}
                 onChange={handleInputChange}
               />
-              <span className="error" id="email-error"></span>
+              {errors.email && <span className="error">{errors.email}</span>}
             </div>
             <div className="form-group phone">
               <label htmlFor="phone">Phone Number</label>
@@ -194,7 +244,7 @@ const Partner = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
               />
-              <span className="error" id="phone-error"></span>
+              {errors.phone && <span className="error">{errors.phone}</span>}
             </div>
             <div className="form-group country" id="country">
               <label htmlFor="country">Country</label>
@@ -210,7 +260,7 @@ const Partner = () => {
                 classNamePrefix="react-select"
                 required
               />
-              <span className="error" id="country-error"></span>
+              {errors.country && <span className="error">{errors.country}</span>}
             </div>
             <div className="form-group state" id="state">
               <label htmlFor="state">State</label>
@@ -227,7 +277,7 @@ const Partner = () => {
                 classNamePrefix="react-select"
                 required
               />
-              <span className="error" id="state-error"></span>
+              {errors.state && <span className="error">{errors.state}</span>}
             </div>
             <div className="form-group currency" id="currency">
               <label htmlFor="currency">Currency</label>
@@ -238,16 +288,14 @@ const Partner = () => {
                 value={formData.currency}
                 onChange={handleInputChange}
               >
-                <option value="NGN" selected>
-                  Naira
-                </option>
+                <option value="NGN"> Naira</option>
                 <option value="USD">USD</option>
                 <option value="Euro">Euro</option>
                 <option value="GBP">GBP</option>
                 <option value="Yen">Yen</option>
                 <option value="AUD">AUD</option>
               </select>
-              <span className="error" id="currency-error"></span>
+              {/* <span className="error" id="currency-error"></span> */}
             </div>
             <div className="form-group amount">
               <label htmlFor="amount">Amount</label>
@@ -260,16 +308,14 @@ const Partner = () => {
                 value={formData.amount}
                 onChange={handleInputChange}
               />
-              <span className="error" id="amount-error"></span>
+               {errors.amount && <span className="error">{errors.amount}</span>}
             </div>
             <div className="form-group submit submit-btn">
-              {/* <button 
+              <input
                 type="submit"
+                value={isLoading ? "Loading..." : "Submit"}
                 disabled={isLoading}
-                >
-                    {isLoading ? 'Processing...' : 'Pay Now'}
-                </button> */}
-              <input type="submit" value="Submit" />
+              />
             </div>
           </form>
         </div>
@@ -281,41 +327,3 @@ const Partner = () => {
 };
 
 export default Partner;
-
-
-
-
-
-
-
-
-
-   {/* <section className="hero-section" id="section_1">
-        <div className="container d-flex justify-content-center align-items-center">
-          <div className="row">
-            <div className="col-12 mt-4 mb-5 text-center">
-              <h2 className="text-white mb-3 display-4 fw-bold" id="annual">
-                Partner with us
-              </h2>
-              <p class="text-white lead mx-auto" style={{ maxwidth: "800px" }}>
-                We are excited to have you consider being our partner for The
-                Lord's Brethren Convocation 2024. Together, we are going to
-                deliver an amazing convocation experience this year.
-                <br></br>
-                Your partnership with us is a partnership with the gospel of
-                Jesus Christ, as it gears towards reaching the world with the
-                message of His saving Grace and the building up of the saints
-                for the work of the ministry.
-                <br></br>
-                We look forward to collaborating with you in making this year's
-                Convocation a successful one.
-                <br></br>
-                Kindly use the form below to submit your details and our team
-                will get to you shortly.
-                <br></br>
-                Thank you, God has blessed you!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}

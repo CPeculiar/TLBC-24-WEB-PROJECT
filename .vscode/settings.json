@@ -9,7 +9,6 @@
             "previewLimit": 50,
             "server": "ep-wild-king-a25qtjvw-pooler.eu-central-1.aws.neon.tech",
             "port": 5432,
-            "askForPassword": true,
             "driver": "PostgreSQL",
             "name": "Vercel PostgreSQL",
             "database": "verceldb",
@@ -17,3 +16,25 @@
         }
     ]
 }
+
+
+// {
+//     "sqltools.connections": [
+//       {
+//         "name": "Vercel PostgreSQL",
+//         "driver": "PostgreSQL",
+//         "server": "ep-wild-king-a25qtjvw-pooler.eu-central-1.aws.neon.tech",
+//         "port": 5432,
+//         "askForPassword": true,
+//         "database": "verceldb",
+//         "username": "default",
+//         "connectionTimeout": 30,
+//         "pgOptions": {
+//           "ssl": {
+//             "rejectUnauthorized": false
+//           }
+//         }
+//       }
+//     ]
+//   }
+  
